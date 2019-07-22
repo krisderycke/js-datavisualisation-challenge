@@ -27,4 +27,31 @@ function createGraph1() {
   console.log(canvas);
 
   //   collect data from Table 1
+  let table1 = document.getElementById("table1");
+  let tableNodes = table1.childNodes[5].children;
+  //console.log(tableNodes);
+  // console.log(tableNodes[5]);
+  // console.log(tableNodes[5].children);
+  // console.log(tableNodes[5].children[1].cells[1]);
+  // console.log(tableNodes[5].children[2].cells[1]);
+  // console.log(tableNodes[5].children[3].cells[1]);
+
+  for (let i = 1; i < tableNodes.length; i++) {
+    // console.log(tableNodes[i].cells[1]);
+    // countries.push(tableNodes[i].cells[1]);
+    // countries.push(tableNodes[i]);
+    let countries = [tableNodes[i].cells[1].innerHTML];
+    console.log(countries);
+
+    //console.log(countries);
+  }
+
+  // let tableData = document.getElementsByTagName("td");
+  // console.log(tableData);
+  // let countries = [];
+
+  // for (let i = 0; i < country.length; i + 12) {
+  //   countries.push(country[i]);
+  //   console.log(countries);
+  // }
 }
