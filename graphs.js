@@ -11,7 +11,6 @@ function createButton() {
   button.style.color = "white";
   button.addEventListener("click", createGraph1);
   headerTable1.appendChild(button);
-  console.log(button);
 }
 
 function createGraph1() {
@@ -24,34 +23,23 @@ function createGraph1() {
   canvas.style.backgroundColor = "red"; /*to still comment out*/
   canvas.style.width = "600px";
   canvas.style.height = "400px";
-  console.log(canvas);
 
-  //   collect data from Table 1
+  //   collect country data from Table 1
   let table1 = document.getElementById("table1");
   let tableNodes = table1.childNodes[5].children;
+  let countries = [];
+
   //console.log(tableNodes);
-  // console.log(tableNodes[5]);
-  // console.log(tableNodes[5].children);
-  // console.log(tableNodes[5].children[1].cells[1]);
-  // console.log(tableNodes[5].children[2].cells[1]);
-  // console.log(tableNodes[5].children[3].cells[1]);
+  //console.log(tableNodes[5].cells);
 
   for (let i = 1; i < tableNodes.length; i++) {
-    // console.log(tableNodes[i].cells[1]);
-    // countries.push(tableNodes[i].cells[1]);
-    // countries.push(tableNodes[i]);
-    let countries = [tableNodes[i].cells[1].innerHTML];
-    console.log(countries);
+    let array = [];
 
-    //console.log(countries);
+    for (let j = 1; j < tableNodes[i].children.length; j++) {
+      array.push(tableNodes[i].children[j].innerText);
+    }
+    countries.push(array);
+    console.log(array);
   }
-
-  // let tableData = document.getElementsByTagName("td");
-  // console.log(tableData);
-  // let countries = [];
-
-  // for (let i = 0; i < country.length; i + 12) {
-  //   countries.push(country[i]);
-  //   console.log(countries);
-  // }
+  console.log(countries);
 }
