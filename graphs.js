@@ -113,6 +113,7 @@ function createButton() {
   button.innerHTML = "click here to see Graph";
   button.style.backgroundColor = "gray";
   button.style.color = "white";
+  button.style.margin = "20px 0 50px 50px";
   headerTable1.appendChild(button);
   button.addEventListener("click", checkForCanvas);
 
@@ -171,7 +172,12 @@ function createButton() {
         labels: years1,
         datasets: dataSet1
       },
-      options: {}
+      options: {
+        title: {
+          display: true,
+          text: "Tableau 1: Infractions enregistrées par la police, 2002–12"
+        }
+      }
     });
 
     ////////// chart2
@@ -221,7 +227,13 @@ function createButton() {
         labels: country2,
         datasets: dataSet2
       },
-      options: {}
+      options: {
+        title: {
+          display: true,
+          text:
+            "Population carcérale, moyenne par an, 2007–09 et 2010–12 (pour 100 000 habitants)"
+        }
+      }
     });
   }
 }
