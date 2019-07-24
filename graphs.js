@@ -208,7 +208,6 @@ function checkForCanvas2() {
       let country = tableRow.cells[1].innerHTML;
       country2.push(country);
     }
-    country2[7] = "Angleterreet paysdeGalles(UK)";
 
     for (let i = 2; i < table2.rows[0].cells.length; i++) {
       let data2 = [];
@@ -239,12 +238,12 @@ function checkForCanvas2() {
     ctx2.canvas.height = window.innerHeight;
 
     var chart = new Chart(ctx2, {
-      type: "bar",
+      type: "line",
       data: {
         labels: country2,
         datasets: dataSet2
       },
-      backgroundColor: ["yellow", "green"],
+      backgroundColor: "yellow",
       borderWidth: 1,
       borderColor: "#000",
       hoverBorderWidth: 3,
