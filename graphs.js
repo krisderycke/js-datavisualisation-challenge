@@ -103,6 +103,7 @@
 const headerTable1 = document.getElementById(
   "Crimes_et_d.C3.A9lits_enregistr.C3.A9s_par_les_services_de_police"
 );
+const headerTable2 = document.getElementById("Homicides");
 window.addEventListener("load", createButton);
 function createButton() {
   const headerTable1 = document.getElementById(
@@ -116,74 +117,85 @@ function createButton() {
   button.style.margin = "20px 0 50px 50px";
   headerTable1.appendChild(button);
   button.addEventListener("click", checkForCanvas);
+}
 
-  function checkForCanvas() {
-    if (document.getElementById("myChart1")) {
-      console.log("canvas1");
-      headerTable1.removeChild(myChart1);
-    } else {
-      getRandomRgb();
+function checkForCanvas() {
+  if (document.getElementById("myChart1")) {
+    console.log("canvas1");
+    headerTable1.removeChild(myChart1);
+  } else {
+    getRandomRgb();
+  }
+
+  function getRandomRgb() {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = (num >> 8) & 255;
+    var b = num & 255;
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+
+  let years1 = [];
+  for (let i = 2; i < table1.rows[1].cells.length; i++) {
+    years1[i - 2] = table1.rows[1].cells[i].innerHTML;
+  }
+
+  let dataSet1 = [];
+  for (let i = 2; i < table1.rows.length; i++) {
+    let randomRGB = getRandomRgb();
+    let tableRow = table1.rows[i];
+    let country = tableRow.cells[1].innerHTML;
+    let data = [];
+    let rowJson = {
+      label: country,
+      fill: false,
+      borderColor: randomRGB,
+      data: data
+    };
+    for (let j = 2; j < tableRow.cells.length; j++) {
+      data.push(parseInt(tableRow.cells[j].innerHTML));
     }
+    dataSet1.push(rowJson);
+  }
 
-    function getRandomRgb() {
-      table1.style.display = "hidden";
-      console.log("hide table");
+  const canvas1 = document.createElement("canvas");
+  canvas1.id = "myChart1";
+  table1.parentNode.insertBefore(canvas1, table1);
+  const ctx = document.getElementById("myChart1").getContext("2d");
+  ctx.canvas.width = window.innerWidth;
+  ctx.canvas.height = window.innerHeight;
 
-      var num = Math.round(0xffffff * Math.random());
-      var r = num >> 16;
-      var g = (num >> 8) & 255;
-      var b = num & 255;
-      return "rgb(" + r + ", " + g + ", " + b + ")";
-    }
-
-    let years1 = [];
-    for (let i = 2; i < table1.rows[1].cells.length; i++) {
-      years1[i - 2] = table1.rows[1].cells[i].innerHTML;
-    }
-
-    let dataSet1 = [];
-    for (let i = 2; i < table1.rows.length; i++) {
-      let randomRGB = getRandomRgb();
-      let tableRow = table1.rows[i];
-      let country = tableRow.cells[1].innerHTML;
-      let data = [];
-      let rowJson = {
-        label: country,
-        fill: false,
-        borderColor: randomRGB,
-        data: data
-      };
-      for (let j = 2; j < tableRow.cells.length; j++) {
-        data.push(parseInt(tableRow.cells[j].innerHTML));
+  var chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: years1,
+      datasets: dataSet1
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Tableau 1: Infractions enregistrées par la police, 2002–12"
       }
-      dataSet1.push(rowJson);
     }
+  });
+}
 
-    const canvas1 = document.createElement("canvas");
-    canvas1.id = "myChart1";
-    table1.parentNode.insertBefore(canvas1, table1);
-    const ctx = document.getElementById("myChart1").getContext("2d");
-    ctx.canvas.width = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
+////////// chart2
 
-    var chart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: years1,
-        datasets: dataSet1
-      },
-      options: {
-        title: {
-          display: true,
-          text: "Tableau 1: Infractions enregistrées par la police, 2002–12"
-        }
-      }
-    });
+// graph2 v2
+var button2 = document.createElement("button");
+button2.setAttribute("id", "button2");
+button2.innerHTML = "click here to see Graph";
+button2.style.backgroundColor = "gray";
+button2.style.color = "white";
+button2.style.margin = "20px 0 50px 50px";
+headerTable2.appendChild(button2);
+button2.addEventListener("click", checkForCanvas2);
 
-    ////////// chart2
-
-    // graph2 v2
-
+function checkForCanvas2() {
+  if (document.getElementById("myChart2")) {
+    headerTable2.removeChild(myChart2);
+  } else {
     let dataSet2 = [];
     let country2 = [];
     for (let i = 1; i < table2.rows.length; i++) {
@@ -204,11 +216,10 @@ function createButton() {
         yearData2.push(parseInt(tableRow.cells[3].innerHTML));
       }
       let data = data2[i - 2];
-      let randomRGB = getRandomRgb();
       let years2 = table2.rows[0].cells[i].innerHTML;
       let rowJson = {
         label: years2,
-        backgroundColor: randomRGB,
+        backgroundColor: 
         data: data
       };
       dataSet2.push(rowJson);
@@ -227,6 +238,7 @@ function createButton() {
         labels: country2,
         datasets: dataSet2
       },
+      backgroundColor: ["yellow", "green"],
       options: {
         title: {
           display: true,
