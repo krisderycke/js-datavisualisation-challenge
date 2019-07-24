@@ -100,15 +100,20 @@
 //////////////////////// restart project ////////////////////////////////////////
 
 // chart1
+const header1 = document.getElementById("firstHeading");
 const headerTable1 = document.getElementById(
   "Crimes_et_d.C3.A9lits_enregistr.C3.A9s_par_les_services_de_police"
 );
 const headerTable2 = document.getElementById("Homicides");
-window.addEventListener("load", createButton);
-function createButton() {
-  const headerTable1 = document.getElementById(
-    "Crimes_et_d.C3.A9lits_enregistr.C3.A9s_par_les_services_de_police"
-  );
+
+window.addEventListener("load", createButtonAndTopCanvas);
+function createButtonAndTopCanvas() {
+  var introCanvas = document.createElement("canvas");
+  introCanvas.id = "introCanvas";
+  header1.appendChild(introCanvas);
+  introCanvas.style.width = "800px";
+  introCanvas.style.height = "250px";
+  introCanvas.style.backgroundColor = "red";
   var button = document.createElement("button");
   button.setAttribute("id", "button1");
   button.innerHTML = "click here to see Graph";
@@ -250,3 +255,5 @@ function checkForCanvas2() {
     });
   }
 }
+
+////////////////////2nd part of excercises//////////////////////////
