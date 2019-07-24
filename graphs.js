@@ -245,6 +245,10 @@ function checkForCanvas2() {
         datasets: dataSet2
       },
       backgroundColor: ["yellow", "green"],
+      borderWidth: 1,
+      borderColor: "#000",
+      hoverBorderWidth: 3,
+      hoverBorderColor: "#777",
       options: {
         title: {
           display: true,
