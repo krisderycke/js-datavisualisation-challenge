@@ -209,6 +209,7 @@ function checkForCanvas2() {
       let data2 = [];
       let yearData1 = [];
       let yearData2 = [];
+
       data2.push(yearData1, yearData2);
       for (let i = 1; i < table2.rows.length; i++) {
         let tableRow = table2.rows[i];
@@ -219,7 +220,7 @@ function checkForCanvas2() {
       let years2 = table2.rows[0].cells[i].innerHTML;
       let rowJson = {
         label: years2,
-        backgroundColor: 
+
         data: data
       };
       dataSet2.push(rowJson);
