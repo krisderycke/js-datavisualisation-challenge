@@ -115,7 +115,6 @@ function createButtonAndTopCanvas() {
   header1.appendChild(introCanvas);
   introCanvas.style.width = "800px";
   introCanvas.style.height = "250px";
-  // introCanvas.style.backgroundColor = "red";
   var button = document.createElement("button");
   button.setAttribute("id", "button1");
   button.innerHTML = "click here to see Graph";
@@ -133,7 +132,6 @@ async function createTopChart() {
   const request = "https://canvasjs.com/services/data/datapoints.php";
   let response = await fetch(proxy + request);
   graphData = await response.json();
-  //  let randomRGB = getRandomRgb();
   let xAxis = [];
   let data3 = [];
   let graphJson = [
@@ -141,14 +139,14 @@ async function createTopChart() {
       label: "crime",
       backgroundColor: [
         "green",
+        "cobalt",
         "yellow",
         "blue",
         "red",
         "black",
+        "azure",
         "pink",
-        "magenta",
-        "cobalt",
-        "azure"
+        "magenta"
       ],
       data: data3
     }
@@ -167,7 +165,7 @@ async function createTopChart() {
   const ctx3 = document.getElementById("introCanvas").getContext("2d");
 
   var chart3 = new Chart(ctx3, {
-    type: "line",
+    type: "bar",
     data: {
       labels: xAxis,
       datasets: graphJson
