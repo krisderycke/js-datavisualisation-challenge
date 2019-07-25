@@ -107,13 +107,15 @@ const headerTable1 = document.getElementById(
 const headerTable2 = document.getElementById("Homicides");
 
 window.addEventListener("load", createButtonAndTopCanvas);
+window.addEventListener("load", createTopChart);
+
 function createButtonAndTopCanvas() {
   var introCanvas = document.createElement("canvas");
   introCanvas.id = "introCanvas";
   header1.appendChild(introCanvas);
   introCanvas.style.width = "800px";
   introCanvas.style.height = "250px";
-  introCanvas.style.backgroundColor = "red";
+  // introCanvas.style.backgroundColor = "red";
   var button = document.createElement("button");
   button.setAttribute("id", "button1");
   button.innerHTML = "click here to see Graph";
@@ -124,6 +126,57 @@ function createButtonAndTopCanvas() {
   button.addEventListener("click", checkForCanvas);
 }
 
+////////////////////////// top chart
+
+async function createTopChart() {
+  const proxy = "https://cors-anywhere.herokuapp.com/";
+  const request = "https://canvasjs.com/services/data/datapoints.php";
+  let response = await fetch(proxy + request);
+  graphData = await response.json();
+  //  let randomRGB = getRandomRgb();
+  let xAxis = [];
+  let data3 = [];
+  let graphJson = [
+    {
+      label: "crime",
+      backgroundColor: [
+        "green",
+        "yellow",
+        "blue",
+        "red",
+        "black",
+        "pink",
+        "magenta",
+        "cobalt",
+        "azure"
+      ],
+      data: data3
+    }
+  ];
+
+  for (let i = 0; i < graphData.length; i++) {
+    let xdata;
+    let ydata;
+    let array = graphData[i];
+    xdata = array[0];
+    ydata = array[1];
+    xAxis.push(xdata.toString());
+    data3.push(ydata);
+  }
+
+  const ctx3 = document.getElementById("introCanvas").getContext("2d");
+
+  var chart3 = new Chart(ctx3, {
+    type: "line",
+    data: {
+      labels: xAxis,
+      datasets: graphJson
+    },
+    options: {}
+  });
+}
+
+///////////////////////////// end top chart
 function checkForCanvas() {
   if (document.getElementById("myChart1")) {
     console.log("canvas1");
