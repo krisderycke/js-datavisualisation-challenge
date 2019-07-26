@@ -166,13 +166,14 @@ async function createTopChart() {
   const ctx3 = document.getElementById("introCanvas").getContext("2d");
 
   var chart3 = new Chart(ctx3, {
-    type: "bar",
+    type: "line",
     data: {
       labels: xAxis,
       datasets: graphJson
     },
     options: {}
   });
+  setInterval(createTopChart, 5000);
 }
 
 ///////////////////////////// end top chart
