@@ -138,7 +138,7 @@ async function createTopChart() {
     {
       label: "crime",
       backgroundColor: [
-        "green",
+        "purple",
         "cobalt",
         "yellow",
         "blue",
@@ -146,7 +146,8 @@ async function createTopChart() {
         "black",
         "azure",
         "pink",
-        "magenta"
+        "magenta",
+        "green"
       ],
       data: data3
     }
