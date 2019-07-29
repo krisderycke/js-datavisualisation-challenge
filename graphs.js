@@ -129,7 +129,8 @@ function createButtonAndTopCanvas() {
 
 async function createTopChart() {
   const proxy = "https://cors-anywhere.herokuapp.com/";
-  const request = "http://localhost/phpfiles/Data-viz/randomData.php";
+  // const request = "https://localhost/phpfiles/Data-viz/randomData.php";
+  const request = "https://canvasjs.com/services/data/datapoints.php";
   let response = await fetch(proxy + request);
   graphData = await response.json();
   let xAxis = [];
@@ -173,7 +174,7 @@ async function createTopChart() {
     },
     options: {}
   });
-  setInterval(createTopChart, 5000);
+  // setInterval(createTopChart, 5000);
 }
 
 ///////////////////////////// end top chart
